@@ -9,6 +9,7 @@ build:
 	sudo docker-compose build
 
 up:
+	test -S /tmp/pulseaudio.socket || pactl load-module module-native-protocol-unix socket=/tmp/pulseaudio.socket
 	sudo docker-compose up -d
 
 down:

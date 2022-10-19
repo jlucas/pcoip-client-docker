@@ -29,6 +29,9 @@ RUN apt-get install ./teradici-repo-latest.deb
 RUN echo "deb [arch=amd64] https://downloads.teradici.com/ubuntu bionic-beta non-free" > /etc/apt/sources.list.d/pcoip.list
 RUN apt-get update && apt-get install --no-install-recommends -y pcoip-client
 
+# Pulseaudio for audio support
+RUN apt-get update && apt-get install -y pulseaudio
+
 # Define a variant for non-nvidia accelerated setups; no different from base!
 FROM base AS branch-version-0
 RUN apt-get install -y mesa-utils libgl1-mesa-glx libnvidia-gl-470

@@ -14,10 +14,14 @@ services:
     environment:
       - DISPLAY=${DISPLAY}
       - QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb
+      - PULSE_SERVER=unix:/tmp/pulseaudio.socket
+      - PULSE_COOKIE=/tmp/pulseaudio.cookie
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ./teradici-client-config/:${HOME}/.config/Teradici/
       - ./logs:/tmp/Teradici/${HOST_USERNAME:-0}/PCoIPClient/logs
+      - /tmp/pulseaudio.socket:/tmp/pulseaudio.socket
+      - ./pulseaudio/pulseaudio.client.conf:/etc/pulse/client.conf
     network_mode: host
     devices:
       - /dev/dri
