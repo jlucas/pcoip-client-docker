@@ -1,4 +1,4 @@
-.PHONY: build up down restart attach clean
+.PHONY: build-nvidia build up down restart sh clean
 
 NVIDIA_DRIVER_VERSION = $(shell awk '/NVRM/ {print $$8}'  /proc/driver/nvidia/version)
 
@@ -17,7 +17,7 @@ down:
 restart:
 	sudo docker-compose restart
 
-attach:
+sh:
 	sudo docker exec -it pcoip-client-docker_pcoip_appliance_1 /bin/bash
 
 clean:
